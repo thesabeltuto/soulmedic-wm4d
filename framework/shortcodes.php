@@ -219,6 +219,18 @@ function call_description_shortcode($description){
 	return $description;
 
 }
+
+function call_addresses_shortcode($address){
+	if(preg_match('%practice_name%', $description)){
+		$description = get_general_data('practice_name', $description);
+	}
+	if(preg_match('%location%', $address)){
+		$data = get_multi_data('location', $address);
+		$string = preg_replace("#\r\n#",'{br}',trim($data));
+		$address = $string;
+	}
+	return $address;
+}
 	
 function call_web_shortcode($url){
 	if(preg_match('%self%', $url)){
@@ -459,8 +471,10 @@ function responsive_map_shortcode_edited($atts) {
     if ($atts['address'] != '') {
 	  $description = $atts['description'];
 	  $description = call_description_shortcode($description);
+	  $addresses  = $atts['address'];
+	  $addresses = call_addresses_shortcode($addresses);
 
-      $addresses = explode("|",$atts['address']);
+      $addresses = explode("|",$addresses);
       $descriptions = explode("|",$description);
       $icons = explode("|",$atts['icon']);
 

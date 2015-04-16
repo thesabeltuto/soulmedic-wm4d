@@ -101,12 +101,12 @@ $wm4d_multiple_select = get_option('wm4d_multiple_select');
                         <div class="entry-metadata">
                         
 							<?php
-							if ($wm4d_multiple_select!='enable') { 
-								$first =  '<span class="fa fa-folder-open"> </span><a href="'.site_url().'/doctors/">Meet the Doctor</a>';
-							}
-							if ($wm4d_multiple_select=='enable') { 
+//							if ($wm4d_multiple_select!='enable') { 
+//								$first =  '<span class="fa fa-folder-open"> </span><a href="'.site_url().'/doctors/">Meet the Doctor</a>';
+//							}
+//							if ($wm4d_multiple_select=='enable') { 
 								$first =  '<span class="fa fa-folder-open"> </span><a href="'.site_url().'/doctors/">Meet the Doctors</a>';
-							}
+//							}
 							$categories = the_terms($post->ID, 'doctors-category', '<span class="fa fa-folder-open"> </span>', ', ', '');
 							if ($categories == '') {
 								$categories = $first;

@@ -5,12 +5,12 @@ $wm4d_multiple_select = get_option('wm4d_multiple_select');
 <script>
 (function($) {	
 	$(document).ready(function() {
-		if( '<?=$wm4d_multiple_select?>' != 'enable') {
-			var breadcrumb = '<a href="/">Home</a><span class="fa fa-angle-double-right">  </span><h1>Meet the Doctor</h1>';
-		}
-		if( '<?=$wm4d_multiple_select?>' == 'enable') {
+//		if( '<?=$wm4d_multiple_select?>' != 'enable') {
+//			var breadcrumb = '<a href="/">Home</a><span class="fa fa-angle-double-right">  </span><h1>Meet the Doctor</h1>';
+//		}
+//		if( '<?=$wm4d_multiple_select?>' == 'enable') {
 			var breadcrumb = '<a href="/">Home</a><span class="fa fa-angle-double-right">  </span><h1>Meet the Doctors</h1>';
-		}
+//		}
 		$('div.breadcrumb').html(breadcrumb);
 	});
 })(jQuery);
@@ -65,12 +65,12 @@ $wm4d_multiple_select = get_option('wm4d_multiple_select');
             <article id="post-doctor" <?php post_class('blog-entry'); ?>>
                 <div class="blog-entry-inner">
                 	<div class="entry-details">
-                    	<?php if ($wm4d_multiple_select!='enable') { ?>
+<?php /*?>                    	<?php if ($wm4d_multiple_select!='enable') { ?>
                         <div class="entry-title"><h4>Meet the Doctor</h4></div>
                      	<?php } if ($wm4d_multiple_select=='enable') { ?>
-                        <div class="entry-title"><h4>Meet the Doctors</h4></div>
-                        <?php } ?>
-                        <div class="entry-body"><?php echo do_shortcode(get_option('wm4d_page_doctor')); ?></div>
+<?php */?>                        <div class="entry-title"><h4>Meet the Doctors</h4></div>
+<?php /*?>                        <?php } ?>
+<?php */?>                        <div class="entry-body"><?php echo do_shortcode(get_option('wm4d_page_doctor')); ?></div>
                     </div>
                 </div>
             </article>

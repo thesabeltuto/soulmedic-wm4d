@@ -7,12 +7,12 @@ $term = $term->name;
 <script>
 (function($) {	
 	$(document).ready(function() {
-		if( '<?=$wm4d_multiple_select?>' != 'enable') {
-			var breadcrumb = '<a href="<?=site_url()?>/">Home</a><span class="fa fa-angle-double-right">  </span><a href="<?=site_url()?>/doctors/">Meet the Doctor</a><span class="fa fa-angle-double-right">  </span><h1><?=$term?></h1>';
-		}
-		if( '<?=$wm4d_multiple_select?>' == 'enable') {
+//		if( '<?=$wm4d_multiple_select?>' != 'enable') {
+//			var breadcrumb = '<a href="<?=site_url()?>/">Home</a><span class="fa fa-angle-double-right">  </span><a href="<?=site_url()?>/doctors/">Meet the Doctor</a><span class="fa fa-angle-double-right">  </span><h1><?=$term?></h1>';
+//		}
+//		if( '<?=$wm4d_multiple_select?>' == 'enable') {
 			var breadcrumb = '<a href="<?=site_url()?>/">Home</a><span class="fa fa-angle-double-right">  </span><a href="<?=site_url()?>/doctors/">Meet the Doctors</a><span class="fa fa-angle-double-right">  </span><h1><?=$term?></h1>';
-		}
+//		}
 		$('div.breadcrumb').html(breadcrumb);
 	});
 })(jQuery);

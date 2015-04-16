@@ -1,6 +1,6 @@
 <?php
 function soulmedic_wm4d_support() {
-?>
+	?>
     <div class="soulmedic_geo_wm4d_wrap">
     <h1>Soulmedic Theme and WM4D Options Integration Support</h1>
     <div id="wm4d_nav">
@@ -207,6 +207,7 @@ function soulmedic_wm4d_support() {
     </table>
     </div>
     
+
     <h3>Soulmedic Page: Appointment Shortcodes</h3>
     <hr />
     <p> Appointment Shortcodes commonly used in Contact Us page.<br />
@@ -413,7 +414,7 @@ function soulmedic_wm4d_support() {
     
     <h3>Responsive Styled Google Maps Settings</h3>
     <hr />
-    <p>Allowed WM4D Shortcodes only work within the <strong>( description="" )</strong> tag.<br />
+    <p>Allowed WM4D Shortcodes only work within <strong>( address="" and description="" )</strong> tags.<br />
 		<a href="?page=wm4d_options">Click here</a> to get ID numbers of each item.</p>
     <div class="soulmedic_geo_wm4d_section support">
     <table border="0" cellspacing="0" cellpadding="8" class="soulmedic_geo_wm4d_table_support">
@@ -421,6 +422,18 @@ function soulmedic_wm4d_support() {
             <th>Input / Section</th>
             <th>Allowed WM4D Shortcodes</th>
         </thead>
+        <tr>
+            <td><strong>Address</strong> - (Map Address)</td>
+            <td><strong>%practice_name%</strong><br />
+				<?php if ( get_option('wm4d_multiple_select') != 'enable') { ?>
+                    <strong>%location%</strong><br />
+                <?php } ?>
+ 				<?php if ( get_option('wm4d_multiple_select') == 'enable') { ?>
+                    <strong>%locations%</strong><br />
+                    <strong>%locations_#%</strong><br />
+                <?php } ?>
+            </td>
+        </tr>
         <tr>
             <td><strong>Description</strong> - (Map Details)</td>
             <td><strong>%client_name%</strong><br />
@@ -444,12 +457,14 @@ function soulmedic_wm4d_support() {
     </div>
     
     <h3>&nbsp;</h3>
-    <h3>Soulmedic WM4D Theme Support</h3>
+    <h3>Soulmedic Geo Theme Support</h3>
     <hr />
     <p>Version <?=$GLOBALS['THEME_VERSION']?>. Created by <a href="http://thesabeltuto.blogspot.com/" target="_blank">Thesabel Tuto</a> and Geophy Lawrence Pagaspas.</p>
     <p>Child theme for the soulmedic theme. Integrated with WM4D-Options. Additional Testimonial Categories pages: Text Testimonials and Video Testimonials. Additional Soulmedic-WM4D Shortcodes and Support Page.</p>
 
+
     </div>
+    
     </div>
     <?php
 }
