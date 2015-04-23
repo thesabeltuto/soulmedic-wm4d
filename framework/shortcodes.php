@@ -20,6 +20,11 @@ function my_dynamic_menu_items( $menu_items ) {
 				$newitem = get_multi_data('doctor_name', $title);
 				$menu_item->title = $newitem;
         }
+        if ( preg_match('%phone_numbers_menu%', $title) ) {
+            global $shortcode_tags;
+				$newitem = get_phones_menu($title);
+				$menu_item->title = $newitem;
+        }
    }
     return $menu_items;
 }
@@ -163,6 +168,25 @@ function get_multi_data($match, $title) {
 	return $title;	
 }
 
+function get_phones_menu($title){
+	$title = '';
+	$phones = get_option('wm4d_phones');
+	$location = get_option('wm4d_phones_loc');
+	$string = explode('%phone_numbers_menu%', $title );
+	$max = count($phones);
+	foreach( $phones as $k => $v) {
+		if($k == 0) {
+			$title .= '<a href="tel:'.$v.'">'. $location[$k] ."<br/>". $v .'</a></li>';
+		}
+		else {
+			$title .= '<li id="menu-item-phones-'.$k.'" clas"menu-item menu-item-type-custom menu-item-object-custom menu-item-phones'.$k.'">';
+			$title .= '<a href="tel:'.$v.'">'. $location[$k] ."<br/>". $v .'</a></li>';
+		}
+	}
+	
+	return $title;
+}
+
 function call_phone_shortcode($phone){
 	if(preg_match('%phone_number%', $phone)){
 		$phone = get_multi_data('phone_number', $phone);
@@ -216,22 +240,46 @@ function call_description_shortcode($description){
 		$string = preg_replace("#\r\n#",'{br}',trim($data));
 		$description = $string;
 	}
+	if(preg_match('%multi_data%', $description)){
+		$practice = get_option('wm4d_practice');
+		$all_phones = get_option('wm4d_phones');
+		$all_locations = get_option('wm4d_locations');
+		
+		$string = '';
+		foreach($all_phones as $k => $v) {
+			$locations = preg_replace("#\r\n#",'{br}',trim($all_locations[$k]));
+
+			$string .= $practice . '{br}';
+			$string .= $locations . '{br}';
+			$string .= 'Phone: ' . $v . ' | ';
+		}
+		
+		$description = $string;
+	}
+	
 	return $description;
 
 }
 
 function call_addresses_shortcode($address){
-	if(preg_match('%practice_name%', $description)){
-		$description = get_general_data('practice_name', $description);
-	}
 	if(preg_match('%location%', $address)){
 		$data = get_multi_data('location', $address);
 		$string = preg_replace("#\r\n#",'{br}',trim($data));
 		$address = $string;
 	}
+	if(preg_match('%multi_data%', $address)){
+		$data = get_option('wm4d_locations');
+		
+		foreach($data as $k => $v) {
+			$locations = preg_replace("#\r\n#",'',trim($v));
+			$string .= $locations . '|';
+		}
+		$address = $string;
+	}
 	return $address;
+	//return print_r( $data );
 }
-	
+
 function call_web_shortcode($url){
 	if(preg_match('%self%', $url)){
 		$url = site_url();
@@ -473,10 +521,11 @@ function responsive_map_shortcode_edited($atts) {
 	  $description = call_description_shortcode($description);
 	  $addresses  = $atts['address'];
 	  $addresses = call_addresses_shortcode($addresses);
+	  $icons = $atts['icon'];
 
       $addresses = explode("|",$addresses);
       $descriptions = explode("|",$description);
-      $icons = explode("|",$atts['icon']);
+      $icons = explode("|",$icons);
 
       // Build a marker for each address
       $markers = '[';

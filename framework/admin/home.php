@@ -97,9 +97,12 @@ function soulmedic_wm4d_support() {
             <td><strong>%phone_numbers%</strong><br />
             	-- show all phone numbers<br />
             	<strong>%phone_numbers_#%</strong><br />
-                -- <strong>#</strong> - ID number of the phone number
+                -- <strong>#</strong> - ID number of the phone number<br/>
+                <strong>%phone_numbers_menu%</strong><br/>
+                -- show all phone numbers in menu (formatted)
             </td>
-            <td><strong>Title Box</strong><br />
+            <td><strong>Menu</strong><br />
+            	<strong>Title Box</strong><br />
                 <strong>Title Box Colored</strong><br />
                 <strong>Info Box</strong><br />
                 <strong>Appointment: Phone</strong><br />
@@ -116,6 +119,16 @@ function soulmedic_wm4d_support() {
                 <strong>Title Box Colored</strong><br />
                 <strong>Info Box</strong><br />
                 -- <strong>Appointment: Address Lines</strong><br />
+            </td>
+        </tr>
+        <tr>
+        	<td><strong>Multi Data</strong></td>
+            <td><strong>%multi_data%</strong><br />
+            	-- formatted according to needs
+            </td>
+            <td><strong>Responsive Styled Google Maps</strong><br />
+            	-- Addresses (formatted)<br />
+                -- Descriptions (formatted)<br />
             </td>
         </tr>
         <?php } ?>
@@ -431,6 +444,7 @@ function soulmedic_wm4d_support() {
  				<?php if ( get_option('wm4d_multiple_select') == 'enable') { ?>
                     <strong>%locations%</strong><br />
                     <strong>%locations_#%</strong><br />
+                    <strong>%multi_data%</strong> (formatted)<br />
                 <?php } ?>
             </td>
         </tr>
@@ -450,6 +464,7 @@ function soulmedic_wm4d_support() {
                     <strong>%phone_numbers_#%</strong><br />
                     <strong>%locations%</strong><br />
                     <strong>%locations_#%</strong><br />
+                    <strong>%multi_data%</strong> (formatted)<br />
                 <?php } ?>
             </td>
         </tr>
