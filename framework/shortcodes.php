@@ -280,6 +280,18 @@ function call_addresses_shortcode($address){
 	//return print_r( $data );
 }
 
+function call_icons_shortcode($address, $icons) {
+	if(preg_match('%multi_data%', $address)){
+		$data = get_option('wm4d_locations');
+		$string = '';
+		foreach($data as $k => $v) {
+			$string .=  $icons . '|';
+		}
+		$icons = $string;
+	}
+	return $icons;
+}
+
 function call_web_shortcode($url){
 	if(preg_match('%self%', $url)){
 		$url = site_url();
@@ -519,12 +531,14 @@ function responsive_map_shortcode_edited($atts) {
     if ($atts['address'] != '') {
 	  $description = $atts['description'];
 	  $description = call_description_shortcode($description);
-	  $addresses  = $atts['address'];
-	  $addresses = call_addresses_shortcode($addresses);
+	  $address  = $atts['address'];
+	  $addresses = call_addresses_shortcode($address);
 	  $icons = $atts['icon'];
+	  $icons = call_icons_shortcode($address, $icons);
 
       $addresses = explode("|",$addresses);
       $descriptions = explode("|",$description);
+	  
       $icons = explode("|",$icons);
 
       // Build a marker for each address
