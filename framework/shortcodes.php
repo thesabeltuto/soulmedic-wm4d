@@ -20,6 +20,11 @@ function my_dynamic_menu_items( $menu_items ) {
 				$newitem = get_multi_data('doctor_name', $title);
 				$menu_item->title = $newitem;
         }
+        if ( preg_match('%doctor_title%', $title) ) {
+            global $shortcode_tags;
+				$newitem = get_multi_data('doctor_title', $title);
+				$menu_item->title = $newitem;
+        }
         if ( preg_match('%phone_numbers_menu%', $title) ) {
             global $shortcode_tags;
 				$newitem = get_phones_menu($title);
@@ -69,6 +74,9 @@ function call_title_shortcode($title){
 	if(preg_match('%doctor_name%', $title)){
 		$title = get_multi_data('doctor_name', $title);
 	}
+	if(preg_match('%doctor_title%', $title)){
+		$title = get_multi_data('doctor_title', $title);
+	}
 	
 	return $title;	
 }
@@ -102,6 +110,15 @@ function get_multi_data($match, $title) {
 		$string = explode('%doctor_name', $title );
 	}
 	
+	if($match == 'doctor_title') {
+		$doctor1 = get_option('wm4d_doctor');
+		$titles1 = get_option('wm4d_doc_titles');
+		$match1 = $doctor1.', '.$titles1;
+		$matchN = get_option('wm4d_doctors');
+		$titlesN = get_option('wm4d_docs_titles');
+		$string = explode('%doctor_title', $title );
+	}
+	
 	if($match == 'location') {
 		$match1 = get_option('wm4d_location');
 		$matchN = get_option('wm4d_locations');
@@ -109,13 +126,13 @@ function get_multi_data($match, $title) {
 	}
 	
 	$title = $string[0];
-	
 	for($i=1; $i < sizeof($string); $i++) {
 		$matchstring1 = explode('%', $string[$i]);
 		if($matchstring1[0] == '') {
 			if($match == 'phone_number') {
 				$title .= '<a href="tel:'.$match1.'">'.$match1.'</a>';
 			} else {
+				
 				$title .= $match1;
 			}
 			$title .= $matchstring1[$i]; //outnext
@@ -135,6 +152,14 @@ function get_multi_data($match, $title) {
 						   $title .= '<a href="tel:'.$v.'">'.$v.'</a>';
 						} else {
 						   $title .= '<a href="tel:'.$v.'">'.$v.'</a>, ';
+						}
+					} elseif($match == 'doctor_title') {
+						if ( $k == 0 ) {
+						   $title .= $v.', '.$titlesN[$k].', ';
+						} elseif ($k == $max-1) {
+						   $title .= $v.', '.$titlesN[$k];
+						} else {
+						   $title .= $v.', '.$titlesN[$k].', ';
 						}
 					} else {
 						if ( $k == 0 ) {
@@ -157,6 +182,10 @@ function get_multi_data($match, $title) {
 				
 				if($match == 'phone_number') {
 					$title .= '<a href="tel:'.$matchN[$id].'">'.$matchN[$id].'</a>';
+				} elseif($match == 'doctor_title') {
+					$Ndoctor = $matchN[$id];
+					$Ntitles = $titlesN[$id];
+					$title .= $Ndoctor.', '.$Ntitles;
 				} else {
 					$title .= $matchN[$id];
 				}
@@ -229,6 +258,9 @@ function call_description_shortcode($description){
 	if(preg_match('%doctor_name%', $description)){
 		$description = get_multi_data('doctor_name', $description);
 	}
+	if(preg_match('%doctor_title%', $description)){
+		$description = get_multi_data('doctor_title', $description);
+	}
 	if(preg_match('%client_name%', $description)){
 		$description = get_general_data('client_name', $description);
 	}
@@ -249,7 +281,7 @@ function call_description_shortcode($description){
 		foreach($all_phones as $k => $v) {
 			$locations = preg_replace("#\r\n#",'{br}',trim($all_locations[$k]));
 
-			$string .= $practice . '{br}';
+			//$string .= $practice . '{br}';
 			$string .= $locations . '{br}';
 			$string .= 'Phone: ' . $v . ' | ';
 		}
