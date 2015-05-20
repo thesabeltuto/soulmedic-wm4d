@@ -51,7 +51,7 @@ $wm4d_multiple_select = get_option('wm4d_multiple_select');
                             </div><!-- .entry-thumb -->
                     <?php endif;*/ ?>
                     
-                    <div class="entry-thumb">
+<?php /*?>                    <div class="entry-thumb">
                             <?php if( $format === "image" || empty($format) ):?>
                                     <a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>">
                                     <?php if( has_post_thumbnail() ):
@@ -88,7 +88,7 @@ $wm4d_multiple_select = get_option('wm4d_multiple_select');
                                                 <img src="http://placehold.it/1060x636&text=Image" alt="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>" />		<?php endif;?></a>                  
                                 <?php endif; ?>
                     </div>                    
-                    <div class="entry-details">
+<?php */?>                    <div class="entry-details">
                     
 					  <?php if(is_sticky()): ?>
                         	<div class="featured-post"> <span class="fa fa-trophy"> </span> <?php _e('Featured','dt_themes');?></div>

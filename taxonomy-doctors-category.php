@@ -105,10 +105,11 @@ $term = $term->name;
 <?php */?>                                	<h4><a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>"><?php the_title();?></a></h4>
                                 </div> 
                                                                 
-                                <div class="entry-body"><?php echo the_excerpt();?></div>
+                                <div class="entry-body"><?php echo the_content();?></div>
                                                                 
-                                <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__('%s'), the_title_attribute('echo=0'));?>" class="dt-sc-button small read-more">
+<?php /*?>                                <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__('%s'), the_title_attribute('echo=0'));?>" class="dt-sc-button small read-more">
 	                                             	<?php _e('Read More','dt_themes');?> <span class="fa fa-angle-double-right"> </span></a>
+<?php */?>                                
                                 
                             
                             </div><!-- .entry-details -->
