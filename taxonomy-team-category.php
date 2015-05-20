@@ -90,7 +90,7 @@ $term = $term->name
                                 <!-- .entry-title -->
                                 <div class="entry-title">
 <?php /*?>                                	<h4><?php the_title();?></h4> .entry-title 
-<?php */?>                                	<h4><a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>"><?php the_title();?></a></h4>
+<?php */?>                                	<h3><a href="<?php the_permalink();?>" title="<?php printf(esc_attr__('%s'),the_title_attribute('echo=0'));?>"><?php the_title();?></a></h3>
                                 </div> 
                                                                 
                                 <div class="entry-body"><?php echo the_content();?></div>

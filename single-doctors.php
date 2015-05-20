@@ -95,7 +95,7 @@ $wm4d_multiple_select = get_option('wm4d_multiple_select');
                   	  <?php endif;?>
                       
                       	<div class="entry-title">
-                      		<h4><a href="<?php the_permalink();?>" title="<?php printf( esc_attr__('%s'), the_title_attribute('echo=0'));?>"><?php the_title();?></a></h4>
+                      		<h3><a href="<?php the_permalink();?>" title="<?php printf( esc_attr__('%s'), the_title_attribute('echo=0'));?>"><?php the_title();?></a></h3>
                       	</div>
                         
                         <div class="entry-metadata">
