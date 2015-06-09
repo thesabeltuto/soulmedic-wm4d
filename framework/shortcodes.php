@@ -146,25 +146,19 @@ function get_multi_data($match, $title) {
 				$max = count($matchN);
 				foreach( $matchN as $k => $v) {
 					if($match == 'phone_number') {
-						if ( $k == 0 ) {
-						   $title .= '<a href="tel:'.$v.'">'.$v.'</a>, ';
-						} elseif ($k == $max-1) {
+						if ($k == $max-1) {
 						   $title .= '<a href="tel:'.$v.'">'.$v.'</a>';
 						} else {
 						   $title .= '<a href="tel:'.$v.'">'.$v.'</a>, ';
 						}
 					} elseif($match == 'doctor_title') {
-						if ( $k == 0 ) {
-						   $title .= $v.', '.$titlesN[$k].', ';
-						} elseif ($k == $max-1) {
+						if ($k == $max-1) {
 						   $title .= $v.', '.$titlesN[$k];
 						} else {
 						   $title .= $v.', '.$titlesN[$k].', ';
 						}
 					} else {
-						if ( $k == 0 ) {
-						   $title .= $v.', ';
-						} elseif ($k == $max-1) {
+						if ($k == $max-1) {
 						   $title .= $v;
 						} else {
 						   $title .= $v.', ';
@@ -296,7 +290,7 @@ function call_description_shortcode($description){
 function call_addresses_shortcode($address){
 	if(preg_match('%location%', $address)){
 		$data = get_multi_data('location', $address);
-		$string = preg_replace("#\r\n#",'{br}',trim($data));
+		$string = preg_replace("#\r\n#",'',trim($data));
 		$address = $string;
 	}
 	if(preg_match('%multi_data%', $address)){
