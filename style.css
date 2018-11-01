@@ -5,10 +5,13 @@ Author: 		the DesignThemes team, Thesabel Uy Tuto
 Author URI: 	http://themeforest.net/user/designthemes
 Description:    Child theme for the soulmedic theme. Integrated with WM4D-Options. Additional Testimonial Categories pages: Text Testimonials and Video Testimonials. Additional Soulmedic-WM4D Shortcodes and Support Page.
 Template:       soulmedic
-Version:        1.1.5
+Version:        1.1.6
 */
 @import url("../soulmedic/style.css");
 
 /*** YOUTUBE FIX ***/
 .youtube { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; }
 .youtube iframe, .youtube object,.youtube embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/*** GFORMS ***/
+.priv { line-height: 1; font-size: 12px; margin-top: 5%;}
